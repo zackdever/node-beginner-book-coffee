@@ -1,4 +1,4 @@
-exec = require('child_process').exec
+querystring = require 'querystring'
 
 start = (response, postData) ->
   console.log "request handler 'start' was called."
@@ -24,7 +24,7 @@ start = (response, postData) ->
 upload = (response, postData) ->
   console.log "request handler 'upload' was called."
   response.writeHead 200, 'Content-Type': 'text/plain'
-  response.write "You've sent: #{postData}" 
+  response.write "You've sent the text: #{querystring.parse(postData).text}"
   response.end()
 
 exports.start = start
